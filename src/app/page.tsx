@@ -9,12 +9,19 @@ import styles from "./page.module.css";
 const Page = () => {
     const [amenities, setAmenities] = useState<IAmenity[]>([]);
     const [selectedAmenity, setSelectedAmenity] = useState<OsmAmenityType>(OsmAmenityType.toilets);
+    const [distanceInput, setDistanceInput] = useState<number>(200);
 
-    const handleFindClick = async () => {
+    const handleFindClick: () => Promise<void> = async () => {
         const amenitiesService = new AmenitiesService();
         await amenitiesService.getCurrentLocation();
-        const results = await amenitiesService.getNearbyAmenities(selectedAmenity, 1000);
+        const results: IAmenity[] = await amenitiesService.getNearbyAmenities(selectedAmenity, distanceInput);
         setAmenities(results);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            handleFindClick();
+        }
     };
 
     return (
@@ -33,6 +40,17 @@ const Page = () => {
                     </select>
                     <button onClick={handleFindClick} className={styles.button}>Find</button>
                 </div>
+            </div>
+
+            <div className={styles.card}>
+                <h1 className="text-2xl font-bold mb-4">Within (m)</h1>
+                <input
+                    type="number"
+                    value={distanceInput}
+                    onChange={(e) => setDistanceInput(Number(e.target.value))}
+                    onKeyDown={handleKeyDown}
+                    className={styles.input}
+                />
             </div>
 
             <div className={styles.amenitiesList}>
