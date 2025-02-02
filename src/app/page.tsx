@@ -29,36 +29,37 @@ const Page = () => {
             <div className={styles.card}>
                 <h1 className="text-2xl font-bold mb-4">Find Nearby Amenities</h1>
 
-                <div className={styles.selectContainer}>
-                    <select
-                        className={styles.selectBox}
-                        value={selectedAmenity}
-                        onChange={(e) => setSelectedAmenity(e.target.value as OsmAmenityType)}
-                    >
-                        <option value={OsmAmenityType.toilets}>🚻 Toilets</option>
-                        <option value={OsmAmenityType.drinking_water}>💧 Drinking Water</option>
-                    </select>
+                <select
+                    className={styles.selectBox}
+                    value={selectedAmenity}
+                    onChange={(e) => setSelectedAmenity(e.target.value as OsmAmenityType)}
+                >
+                    <option value={OsmAmenityType.toilets}>🚻 Toilets</option>
+                    <option value={OsmAmenityType.drinking_water}>💧 Drinking Water</option>
+                </select>
+
+                <h1 className="text-2xl font-bold mb-2 mt-2">Within (m)</h1>
+                <div className={styles.formItemContainer}>
+                    <input
+                        type="number"
+                        value={distanceInput}
+                        onChange={(e) => setDistanceInput(Number(e.target.value))}
+                        onKeyDown={handleKeyDown}
+                        className={styles.input}
+                    />
                     <button onClick={handleFindClick} className={styles.button}>Find</button>
                 </div>
-
-                <h1 className="text-2xl font-bold mb-4">Within (m)</h1>
-                <input
-                    type="number"
-                    value={distanceInput}
-                    onChange={(e) => setDistanceInput(Number(e.target.value))}
-                    onKeyDown={handleKeyDown}
-                    className={styles.input}
-                />
             </div>
 
-            <div className={styles.amenitiesList}>
+                <div className={styles.amenitiesList}>
                 <h2 className="text-xl font-semibold mb-3">Results:</h2>
                 {amenities.length === 0 ? (
                     <p className="text-gray-500 text-center">No amenities found.</p>
                 ) : (
                     <ul>
                         {amenities.map((amenity: IAmenity) => (
-                            <li key={`${amenity.location.lat}-${amenity.location.lon}`} className={styles.resultItem}>
+                            <li key={`${amenity.location.lat}-${amenity.location.lon}`}
+                                className={styles.resultItem}>
                                 <p className={styles.resultText}>📍 Lat: {amenity.location.lat},
                                     Lon: {amenity.location.lon}</p>
                             </li>
@@ -70,4 +71,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+            export default Page;
