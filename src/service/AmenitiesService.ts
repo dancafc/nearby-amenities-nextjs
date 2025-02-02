@@ -10,7 +10,7 @@ dotenv.config();
 
 export class AmenitiesService {
 
-    private location: Location | undefined;
+    public location: Location | undefined;
 
     getCurrentLocation: () => Promise<void> = async () => {
         const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";

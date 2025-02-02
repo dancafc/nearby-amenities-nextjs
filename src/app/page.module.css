@@ -83,3 +83,9 @@ body {
 .input:focus {
     border-color: #2980b9; /* Darker blue when active */
 }
+
+.leaflet-container {
+    height: 400px; /* Adjust as needed */
+    width: 100%;
+}
+
