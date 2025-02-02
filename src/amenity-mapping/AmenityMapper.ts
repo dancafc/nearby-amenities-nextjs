@@ -54,7 +54,8 @@ export class AmenityMapper {
             source: osmToilet.tags.source,
             type: AmenityType.Toilets,
             unisex: osmToilet.tags.unisex == 'yes',
-            wheelchair: osmToilet.tags.wheelchair == 'yes'
+            wheelchair: osmToilet.tags.wheelchair == 'yes',
+            operator: osmToilet.tags.operator,
         };
     }
 

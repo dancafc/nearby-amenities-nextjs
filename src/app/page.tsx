@@ -27,7 +27,7 @@ const Page = () => {
     return (
         <div className={styles.container}>
             <div className={styles.card}>
-                <h1 className="text-2xl font-bold mb-4">Find Nearby Amenities</h1>
+                <h1 className="text-2xl font-bold mb-4">Find</h1>
 
                 <select
                     className={styles.selectBox}
@@ -39,7 +39,7 @@ const Page = () => {
                     <option value={OsmAmenityType.atm}>💰 ATM</option>
                 </select>
 
-                <h1 className="text-xl font-bold mb-2 mt-2">Within (m)</h1>
+                <h1 className="text-2xl font-bold mb-2 mt-2">Within (m)</h1>
                 <div className={styles.formItemContainer}>
                     <input
                         type="number"

@@ -13,6 +13,7 @@ export type OsmToiletTags = IOsmAmenityTags & {
     changing_table: string;
     level: string;
     source: string;
+    operator: string;
 }
 
 export type OsmToilet = IOsmAmenity & {

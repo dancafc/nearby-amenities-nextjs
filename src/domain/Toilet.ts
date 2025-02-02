@@ -15,4 +15,5 @@ export type Toilet = IAmenity & {
     changingTable: boolean;
     level: number | undefined;
     source: string | undefined;
+    operator: string | undefined;
 }
