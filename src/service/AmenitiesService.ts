@@ -12,34 +12,34 @@ export class AmenitiesService {
 
     private location: Location | undefined;
 
-    getCurrentLocation() {
+    getCurrentLocation: () => Promise<void> = async () => {
         const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";
-
         const defaultCentre: number[] = [51.509865, -0.118092];
 
         if (useMockLocation) {
-            console.warn("Geolocation is not supported.");
-            this.location = {
-                lat: defaultCentre[0],
-                lon: defaultCentre[1],
-            }
+            console.warn("Using mock location.");
+            this.location = { lat: defaultCentre[0], lon: defaultCentre[1] };
             return;
         }
 
-        navigator.geolocation.getCurrentPosition(
-            (position: GeolocationPosition) => {
-                console.log("Got position", position.coords);
+        return new Promise((resolve: (value: (PromiseLike<void> | void)) => void, reject: (reason?: any) => void) => {
+            navigator.geolocation.getCurrentPosition(
+                (position: GeolocationPosition) => {
+                    console.log("Got position", position.coords);
+                    this.location = {
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude,
+                    };
+                    resolve();
+                },
+                (error: GeolocationPositionError) => {
+                    console.error("Error getting position:", error);
+                    reject(error);
+                }
+            );
+        });
+    };
 
-                this.location = {
-                    lat: position.coords.latitude,
-                    lon: position.coords.longitude,
-                };
-            },
-            (error: GeolocationPositionError) => {
-                console.error("Error getting position:", error);
-            }
-        );
-    }
 
     async getNearbyAmenities(type: OsmAmenityType, radius: number) : Promise<Toilet[]> {
         const queryString : string | undefined =  this.getNearbyAmenitiesQuery(type, radius);

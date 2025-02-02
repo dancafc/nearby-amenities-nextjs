@@ -1,0 +1,85 @@
+/* app/page.module.css */
+body {
+    color: #171717 !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
+    padding: 1.5rem;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.selectContainer {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.selectBox {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Tailwind's border-gray-300 */
+    border-radius: 0.5rem;
+}
+
+.button {
+    background-color: #2563eb; /* Tailwind's bg-blue-600 */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover {
+    background-color: #1d4ed8; /* Tailwind's hover:bg-blue-700 */
+}
+
+.amenitiesList {
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.resultItem {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.resultText {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: white;
+    color: black;
+}
+
+.input:focus {
+    border-color: #2980b9; /* Darker blue when active */
+}
