@@ -40,9 +40,7 @@ const Page = () => {
                     </select>
                     <button onClick={handleFindClick} className={styles.button}>Find</button>
                 </div>
-            </div>
 
-            <div className={styles.card}>
                 <h1 className="text-2xl font-bold mb-4">Within (m)</h1>
                 <input
                     type="number"

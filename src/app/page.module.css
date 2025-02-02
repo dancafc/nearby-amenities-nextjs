@@ -1,4 +1,8 @@
 /* app/page.module.css */
+body {
+    color: #171717 !important;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -62,4 +66,20 @@
 .resultText {
     font-size: 1.125rem;
     font-weight: 500;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: white;
+    color: black;
+}
+
+.input:focus {
+    border-color: #2980b9; /* Darker blue when active */
 }
