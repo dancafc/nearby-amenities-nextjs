@@ -2,7 +2,7 @@ import {OsmAmenityType} from "./OsmAmenityType";
 import {IOsmAmenity, IOsmAmenityTags} from "./IOsmAmenity";
 
 export type OsmToiletTags = IOsmAmenityTags & {
-    amenity: string;
+    amenity: OsmAmenityType;
     access: string;
     check_date: string;
     fee: string;
@@ -13,10 +13,11 @@ export type OsmToiletTags = IOsmAmenityTags & {
     changing_table: string;
     level: string;
     source: string;
+    operator: string;
 }
 
 export type OsmToilet = IOsmAmenity & {
-    type: OsmAmenityType;
+    type: string;
     id: number;
     lat: number;
     lon: number;
