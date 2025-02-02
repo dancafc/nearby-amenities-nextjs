@@ -13,14 +13,16 @@ export class AmenitiesService {
     private location: Location | undefined;
 
     getCurrentLocation() {
-        const useMockLocation = process.env.MOCK_LOCATION === "true";
+        const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";
+
+        const defaultCentre: number[] = [51.509865, -0.118092];
 
         if (useMockLocation) {
             console.warn("Geolocation is not supported.");
             this.location = {
-                lat: 51.509865,
-                lon: -0.118092,
-            };
+                lat: defaultCentre[0],
+                lon: defaultCentre[1],
+            }
             return;
         }
 
