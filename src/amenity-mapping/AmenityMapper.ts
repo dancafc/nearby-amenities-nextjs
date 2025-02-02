@@ -6,7 +6,7 @@ import {AmenityType} from "@/domain/AmenityType";
 export class AmenityMapper {
 
     public static MapAmenity(osmAmenity: IOsmAmenity): Toilet | undefined {
-        if (typeof osmAmenity.tags == "undefined"){
+        if (typeof osmAmenity.tags == "undefined") {
             console.log("Unexpected json response", osmAmenity);
             return;
         }
@@ -27,23 +27,22 @@ export class AmenityMapper {
         }
     };
 
-    public static MapToilet (osmAmenity: OsmToilet) : Toilet | undefined {
-        return new Toilet(
-            AmenityType.Toilets,
-            osmAmenity.lat,
-            osmAmenity.lon,
-            osmAmenity.tags.access,
-            osmAmenity.tags.check_date && !isNaN(new Date(osmAmenity.tags.check_date).getTime())
+    public static MapToilet(osmAmenity: OsmToilet): Toilet {
+        return {
+            access: osmAmenity.tags.access,
+            changingTable: osmAmenity.tags.changing_table == 'yes',
+            checkDate: osmAmenity.tags.check_date && !isNaN(new Date(osmAmenity.tags.check_date).getTime())
                 ? new Date(osmAmenity.tags.check_date)
                 : undefined,
-            osmAmenity.tags.fee,
-            osmAmenity.tags.female == 'yes',
-            osmAmenity.tags.male == 'yes',
-            osmAmenity.tags.unisex == 'yes',
-            osmAmenity.tags.wheelchair == 'yes',
-            osmAmenity.tags.changing_table == 'yes',
-            Number(osmAmenity.tags.level) || undefined,
-            osmAmenity.tags.source,
-        );
+            fee: osmAmenity.tags.fee,
+            female: osmAmenity.tags.female == 'yes',
+            level: Number(osmAmenity.tags.level) || undefined,
+            location: {lat: osmAmenity.lat, lon: osmAmenity.lon},
+            male: osmAmenity.tags.male == 'yes',
+            source: osmAmenity.tags.source,
+            type: AmenityType.Toilets,
+            unisex: osmAmenity.tags.unisex == 'yes',
+            wheelchair: osmAmenity.tags.wheelchair == 'yes'
+        };
     }
 }
