@@ -1,6 +1,6 @@
+import {IAmenity} from "@/domain/IAmenity";
 import {AmenityType} from "@/domain/AmenityType";
 import {Location} from "@/domain/Location";
-import {IAmenity} from "@/domain/IAmenity";
 
 export type Toilet = IAmenity & {
     type: AmenityType;
