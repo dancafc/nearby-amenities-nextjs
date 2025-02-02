@@ -23,7 +23,7 @@ body {
     text-align: center;
 }
 
-.formContainer {
+.selectContainer {
     display: flex;
     gap: 0.75rem;
 }
