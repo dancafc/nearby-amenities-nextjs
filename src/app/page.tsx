@@ -8,13 +8,13 @@ import styles from "./page.module.css";
 
 const Page = () => {
     const [amenities, setAmenities] = useState<IAmenity[]>([]);
-    const [selectedAmenity, setSelectedAmenity] = useState<OsmAmenityType>(OsmAmenityType.toilets);
+    const [selectedAmenityType, setselectedAmenityType] = useState<OsmAmenityType>(OsmAmenityType.toilets);
     const [distanceInput, setDistanceInput] = useState<number>(200);
 
     const handleFindClick: () => Promise<void> = async () => {
         const amenitiesService = new AmenitiesService();
         await amenitiesService.getCurrentLocation();
-        const results: IAmenity[] = await amenitiesService.getNearbyAmenities(selectedAmenity, distanceInput);
+        const results: IAmenity[] = await amenitiesService.getNearbyAmenities(selectedAmenityType, distanceInput);
         setAmenities(results);
     };
 
@@ -31,14 +31,14 @@ const Page = () => {
 
                 <select
                     className={styles.selectBox}
-                    value={selectedAmenity}
-                    onChange={(e) => setSelectedAmenity(e.target.value as OsmAmenityType)}
+                    value={selectedAmenityType}
+                    onChange={(e) => setselectedAmenityType(e.target.value as OsmAmenityType)}
                 >
                     <option value={OsmAmenityType.toilets}>🚻 Toilets</option>
                     <option value={OsmAmenityType.drinking_water}>💧 Drinking Water</option>
                 </select>
 
-                <h1 className="text-2xl font-bold mb-2 mt-2">Within (m)</h1>
+                <h1 className="text-xl font-bold mb-2 mt-2">Within (m)</h1>
                 <div className={styles.formItemContainer}>
                     <input
                         type="number"
