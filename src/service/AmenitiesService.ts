@@ -10,27 +10,23 @@ dotenv.config();
 
 export class AmenitiesService {
 
-    public location: Location | undefined;
-
-    getCurrentLocation: () => Promise<void> = async () => {
+    static async getCurrentLocation(): Promise<Location> {
         const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";
-        const defaultCentre: number[] = [51.509865, -0.118092];
+        const defaultCentre: Location = { lat: 51.509865, lon: -0.118092 };
 
         if (useMockLocation) {
             console.warn("Using mock location.");
-            this.location = { lat: defaultCentre[0], lon: defaultCentre[1] };
-            return;
+            return defaultCentre;
         }
 
-        return new Promise((resolve: (value: (PromiseLike<void> | void)) => void, reject: (reason?: any) => void) => {
+        return new Promise<Location>((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
                 (position: GeolocationPosition) => {
                     console.log("Got position", position.coords);
-                    this.location = {
+                    resolve({
                         lat: position.coords.latitude,
                         lon: position.coords.longitude,
-                    };
-                    resolve();
+                    });
                 },
                 (error: GeolocationPositionError) => {
                     console.error("Error getting position:", error);
@@ -38,11 +34,11 @@ export class AmenitiesService {
                 }
             );
         });
-    };
+    }
 
 
-    async getNearbyAmenities(type: OsmAmenityType, radius: number) : Promise<Toilet[]> {
-        const queryString : string | undefined =  this.getNearbyAmenitiesQuery(type, radius);
+    async getNearbyAmenities(type: OsmAmenityType, location: Location, radius: number) : Promise<Toilet[]> {
+        const queryString : string | undefined =  this.getNearbyAmenitiesQuery(type, location, radius);
 
         if (!queryString) return [];
 
@@ -66,15 +62,15 @@ export class AmenitiesService {
         return amenities;
     }
 
-    getNearbyAmenitiesQuery(type: OsmAmenityType, radius: number) : string | undefined {
-        if (!this.location){
+    getNearbyAmenitiesQuery(type: OsmAmenityType, location: Location, radius: number) : string | undefined {
+        if (!location){
             console.error("Current location unknown. Unable to get nearby amenities");
             return;
         }
 
         return `
             [out:json];
-            node["amenity" = "` + type + `"](around:` + radius + `, ` + this.location.lat + `, ` + this.location.lon + `);
+            node["amenity" = "` + type + `"](around:` + radius + `, ` + location.lat + `, ` + location.lon + `);
             out;
         `;
     }
