@@ -3,24 +3,61 @@ body {
     color: #171717 !important;
 }
 
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    min-height: 100vh;*/
+/*    background-color: #f3f4f6; !* Tailwind's bg-gray-100 *!*/
+/*    padding: 1.5rem;*/
+/*}*/
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
-    padding: 1.5rem;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+.mapContainer {
+    height: 100%;
+    width: 100%;
 }
 
 .card {
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    width: 300px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.toggleHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    cursor: pointer;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+.selectBox,
+.input,
+.button {
+    display: block;
+    margin: 10px 0;
+}
+
+.animatedContainer {
+    overflow: hidden;
+}
+
+.innerContent {
+    padding: 12px;
 }
 
 .formItemContainer {
@@ -83,3 +120,9 @@ body {
 .input:focus {
     border-color: #2980b9; /* Darker blue when active */
 }
+
+.leaflet-container {
+    height: 400px; /* Adjust as needed */
+    width: 100%;
+}
+
