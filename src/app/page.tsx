@@ -72,7 +72,7 @@ const Page = () => {
                         >
                             <option value={OsmAmenityType.toilets}>🚻 Toilets</option>
                             <option value={OsmAmenityType.drinking_water}>💧 Drinking Water</option>
-                            <option value={OsmAmenityType.atm}>💰 ATM</option>
+                            {/*<option value={OsmAmenityType.atm}>💰 ATM</option>*/}
                         </select>
 
                         <h1 className="text-2xl font-bold mb-2 mt-2">Within (m)</h1>
