@@ -99,6 +99,23 @@ export class AmenityMapper {
         return {
             type: AmenityType.ATM,
             location: {lat: osmAtm.lat, lon: osmAtm.lon},
+            name: osmAtm.tags.name,
+            description: osmAtm.tags.description,
+            brand: osmAtm.tags.brand,
+            fee: osmAtm.tags.fee == 'yes',
+            cost: osmAtm.tags.cost,
+            openingHours: osmAtm.tags.opening_hours,
+            count: isNaN(Number(osmAtm.tags.count)) ? 1 : (Number(osmAtm.tags.count)),
+            indoor: osmAtm.tags.count == 'yes',
+            level: isNaN(Number(osmAtm.tags.level)) ? undefined : (Number(osmAtm.tags.level)),
+            covered: osmAtm.tags.covered == 'yes',
+            lit: osmAtm.tags.lit == 'yes',
+            wheelchair: osmAtm.tags.wheelchair == 'yes',
+            cashIn: osmAtm.tags.cash_in == 'yes',
+            checkDate: osmAtm.tags.check_date && !isNaN(new Date(osmAtm.tags.check_date).getTime())
+                ? new Date(osmAtm.tags.check_date)
+                : undefined,
+            note: osmAtm.tags.note,
         }
     }
 }

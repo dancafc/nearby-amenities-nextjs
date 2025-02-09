@@ -9,6 +9,7 @@ export type OsmAtmTags = IOsmAmenityTags & {
     brand: string | undefined;
     cash_in: string | undefined;
     cost: string | undefined;
+    fee: string | undefined;
     wheelchair: string | undefined;
     check_date: string | undefined;
     note: string | undefined;
