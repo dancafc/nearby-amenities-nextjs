@@ -48,6 +48,11 @@ const Page = () => {
         }
     };
 
+    function getCappedValue(newValue: number, oldValue: number, maxValue: number): number {
+        if (newValue > maxValue) return oldValue;
+        return newValue;
+    }
+
     return (
         <div className={styles.container}>
             <motion.div className={styles.card}>
@@ -79,8 +84,11 @@ const Page = () => {
                         <div className={styles.formItemContainer}>
                             <input
                                 type="number"
+                                min={0}
+                                max={1000}
+                                step={50}
                                 value={distanceInput}
-                                onChange={(e) => setDistanceInput(Number(e.target.value))}
+                                onChange={(e) => setDistanceInput(getCappedValue(Number(e.target.value), distanceInput, 2000))}
                                 onKeyDown={handleKeyDown}
                                 className={styles.input}
                             />
