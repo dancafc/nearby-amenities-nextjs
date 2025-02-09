@@ -72,7 +72,7 @@ export class AmenityMapper {
             wheelchair: osmDrinkingWater.tags.wheelchair == 'yes',
             fee: osmDrinkingWater.tags.fee,
             fountain: osmDrinkingWater.tags.fountain,
-            level: Number(osmDrinkingWater.tags.level),
+            level: isNaN(Number(osmDrinkingWater.tags.level)) ? undefined : (Number(osmDrinkingWater.tags.level)),
             bottle: osmDrinkingWater.tags.bottle,
             openingHours: osmDrinkingWater.tags.opening_hours,
             operator: osmDrinkingWater.tags.operator,

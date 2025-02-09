@@ -48,6 +48,11 @@ const Page = () => {
         }
     };
 
+    function getCappedValue(newValue: number, oldValue: number, maxValue: number): number {
+        if (newValue > maxValue) return oldValue;
+        return newValue;
+    }
+
     return (
         <div className={styles.container}>
             <motion.div className={styles.card}>
@@ -72,15 +77,18 @@ const Page = () => {
                         >
                             <option value={OsmAmenityType.toilets}>🚻 Toilets</option>
                             <option value={OsmAmenityType.drinking_water}>💧 Drinking Water</option>
-                            <option value={OsmAmenityType.atm}>💰 ATM</option>
+                            {/*<option value={OsmAmenityType.atm}>💰 ATM</option>*/}
                         </select>
 
                         <h1 className="text-2xl font-bold mb-2 mt-2">Within (m)</h1>
                         <div className={styles.formItemContainer}>
                             <input
                                 type="number"
+                                min={0}
+                                max={1000}
+                                step={50}
                                 value={distanceInput}
-                                onChange={(e) => setDistanceInput(Number(e.target.value))}
+                                onChange={(e) => setDistanceInput(getCappedValue(Number(e.target.value), distanceInput, 2000))}
                                 onKeyDown={handleKeyDown}
                                 className={styles.input}
                             />

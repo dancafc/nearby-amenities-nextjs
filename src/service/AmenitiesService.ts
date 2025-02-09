@@ -11,8 +11,13 @@ dotenv.config();
 export class AmenitiesService {
 
     static async getCurrentLocation(): Promise<Location> {
-        const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";
-        const defaultCentre: Location = { lat: 51.509865, lon: -0.118092 };
+        const useMockLocation = true;
+
+        // const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";
+        // const defaultCentre: Location = { lat: 51.509865, lon: -0.118092 }; // isles of scilly
+        // const defaultCentre: Location = { lat: 34.669813, lon: 135.508161 }; // osaka
+        // const defaultCentre: Location = { lat: 28.618413, lon: 77.200153 }; // new delhi
+        const defaultCentre: Location = { lat: 35.679160, lon: 139.771879 }; // tokyo
 
         if (useMockLocation) {
             console.warn("Using mock location.");
