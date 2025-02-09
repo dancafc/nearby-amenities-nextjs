@@ -1,18 +1,4 @@
 /* app/page.module.css */
-body {
-    color: #171717 !important;
-}
-
-/*.container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    min-height: 100vh;*/
-/*    background-color: #f3f4f6; !* Tailwind's bg-gray-100 *!*/
-/*    padding: 1.5rem;*/
-/*}*/
-
 .container {
     position: relative;
     height: 100vh;
