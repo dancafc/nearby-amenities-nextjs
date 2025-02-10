@@ -1,12 +1,12 @@
-import {IOsmAmenity} from "@/osm-domain/IOsmAmenity";
-import {OsmToilet, OsmToiletTags} from "@/osm-domain/OsmToilet"
-import {OsmDrinkingWater, OsmDrinkingWaterTags} from "@/osm-domain/OsmDrinkingWater";
-import {OsmAtm, OsmAtmTags} from '@/osm-domain/OsmAtm';
-import {IAmenity} from "@/domain/IAmenity";
-import {AmenityType} from "@/domain/AmenityType";
-import {Toilet} from "@/domain/Toilet";
-import {DrinkingWater} from "@/domain/DrinkingWater";
-import {Atm} from "@/domain/Atm";
+import {IOsmAmenity} from "../osm-domain/IOsmAmenity";
+import {OsmToilet, OsmToiletTags} from "../osm-domain/OsmToilet"
+import {OsmDrinkingWater, OsmDrinkingWaterTags} from "../osm-domain/OsmDrinkingWater";
+import {OsmAtm, OsmAtmTags} from '../osm-domain/OsmAtm';
+import {IAmenity} from "../domain/IAmenity";
+import {AmenityType} from "../domain/AmenityType";
+import {Toilet} from "../domain/Toilet";
+import {DrinkingWater} from "../domain/DrinkingWater";
+import {Atm} from "../domain/Atm";
 
 export class AmenityMapper {
 

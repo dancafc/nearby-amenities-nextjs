@@ -1,6 +1,6 @@
-import {IAmenity} from "@/domain/IAmenity";
-import {AmenityType} from "@/domain/AmenityType";
-import {Location} from "@/domain/Location";
+import {IAmenity} from "./IAmenity";
+import {AmenityType} from "./AmenityType";
+import {Location} from "./Location";
 
 export type Atm = IAmenity & {
     type: AmenityType;
