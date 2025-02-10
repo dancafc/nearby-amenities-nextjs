@@ -32,18 +32,14 @@ const AdjustMapView = ({center, distance, amenities, searchTrigger}: {
     useEffect(() => {
         if (searchTrigger === 0) return; // Don't trigger on initial render
 
+        const bounds = L.latLngBounds([
+            [center.lat - distance / 111000, center.lon - distance / 111000],
+            [center.lat + distance / 111000, center.lon + distance / 111000],
+        ]);
         if (amenities.length > 0) {
-            const bounds = L.latLngBounds([
-                [center.lat - distance / 111000, center.lon - distance / 111000],
-                [center.lat + distance / 111000, center.lon + distance / 111000],
-            ]);
-
             amenities.forEach(amenity => bounds.extend([amenity.location.lat, amenity.location.lon]));
-
-            map.flyToBounds(bounds, {duration: 0.5});
-        } else {
-            map.flyTo([center.lat, center.lon], 13, {duration: 0.5});
         }
+        map.flyToBounds(bounds, {duration: 0.5});
     }, [searchTrigger]); // 🚀 Now only runs when "Find" is pressed
 
     return null;

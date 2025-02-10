@@ -1,10 +1,12 @@
 import {IOsmAmenity} from "../osm-domain/IOsmAmenity";
 import {OsmToilet, OsmToiletTags} from "../osm-domain/OsmToilet"
 import {OsmDrinkingWater, OsmDrinkingWaterTags} from "../osm-domain/OsmDrinkingWater";
+import {OsmAtm, OsmAtmTags} from '../osm-domain/OsmAtm';
 import {IAmenity} from "../domain/IAmenity";
 import {AmenityType} from "../domain/AmenityType";
 import {Toilet} from "../domain/Toilet";
 import {DrinkingWater} from "../domain/DrinkingWater";
+import {Atm} from "../domain/Atm";
 
 export class AmenityMapper {
 
@@ -33,6 +35,15 @@ export class AmenityMapper {
                     tags: osmAmenity.tags as OsmDrinkingWaterTags,
                 }
                 return AmenityMapper.MapDrinkingWater(osmDrinkingWater);
+            case "atm":
+                const osmAtm: OsmAtm = {
+                    type: osmAmenity.type,
+                    id: osmAmenity.id,
+                    lat: osmAmenity.lat,
+                    lon: osmAmenity.lon,
+                    tags: osmAmenity.tags as OsmAtmTags,
+                }
+                return AmenityMapper.MapAtm(osmAtm);
             default:
                 return undefined;
 
@@ -81,6 +92,30 @@ export class AmenityMapper {
             covered: osmDrinkingWater.tags.covered == 'yes',
             operationalStatus: osmDrinkingWater.tags.operational_status,
             seasonal: osmDrinkingWater.tags.seasonal == 'yes',
+        }
+    }
+
+    public static MapAtm(osmAtm: OsmAtm): Atm {
+        return {
+            type: AmenityType.ATM,
+            location: {lat: osmAtm.lat, lon: osmAtm.lon},
+            name: osmAtm.tags.name,
+            description: osmAtm.tags.description,
+            brand: osmAtm.tags.brand,
+            fee: osmAtm.tags.fee == 'yes',
+            cost: osmAtm.tags.cost,
+            openingHours: osmAtm.tags.opening_hours,
+            count: isNaN(Number(osmAtm.tags.count)) ? 1 : (Number(osmAtm.tags.count)),
+            indoor: osmAtm.tags.count == 'yes',
+            level: isNaN(Number(osmAtm.tags.level)) ? undefined : (Number(osmAtm.tags.level)),
+            covered: osmAtm.tags.covered == 'yes',
+            lit: osmAtm.tags.lit == 'yes',
+            wheelchair: osmAtm.tags.wheelchair == 'yes',
+            cashIn: osmAtm.tags.cash_in == 'yes',
+            checkDate: osmAtm.tags.check_date && !isNaN(new Date(osmAtm.tags.check_date).getTime())
+                ? new Date(osmAtm.tags.check_date)
+                : undefined,
+            note: osmAtm.tags.note,
         }
     }
 }
