@@ -1,11 +1,11 @@
 "use client";
 
 import React, {useEffect, useState} from "react";
-import {AmenitiesService} from "@/service/AmenitiesService";
-import {OsmAmenityType} from "@/osm-domain/OsmAmenityType";
-import {IAmenity} from "@/domain/IAmenity";
-import {Location} from "@/domain/Location";
-import LocationsMap from "@/app/components/locationsMap";
+import {AmenitiesService} from "../backend/service/AmenitiesService";
+import {OsmAmenityType} from "../backend/osm-domain/OsmAmenityType";
+import {IAmenity} from "../backend/domain/IAmenity";
+import {Location} from "../backend/domain/Location";
+import LocationsMap from "./components/locationsMap";
 import styles from "./page.module.css";
 import "leaflet/dist/leaflet.css";
 import { motion } from "framer-motion";
@@ -22,7 +22,8 @@ const Page = () => {
     useEffect(() => {
         const fetchLocation = async () => {
             try {
-                const location = await AmenitiesService.getCurrentLocation();
+                // const location = await AmenitiesService.getCurrentLocation();
+                const location = await getCurrentLocation();
                 setCurrentLocation(location);
             } catch (error) {
                 console.error("Failed to get location:", error);
@@ -30,6 +31,38 @@ const Page = () => {
         };
         fetchLocation();
     }, []);
+
+    const getCurrentLocation: () => Promise<Location> = async () => {
+        const useMockLocation = true;
+
+        // const useMockLocation: boolean = process.env.MOCK_LOCATION === "true";
+        // const defaultCentre: Location = { lat: 51.509865, lon: -0.118092 }; // isles of scilly
+        // const defaultCentre: Location = { lat: 34.669813, lon: 135.508161 }; // osaka
+        // const defaultCentre: Location = { lat: 28.618413, lon: 77.200153 }; // new delhi
+        // const defaultCentre: Location = { lat: 35.679160, lon: 139.771879 }; // tokyo
+        const defaultCentre: Location = { lat: 51.520108, lon: -0.110130 }; // london
+
+        if (useMockLocation) {
+            console.warn("Using mock location.");
+            return defaultCentre;
+        }
+
+        return new Promise<Location>((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                (position: GeolocationPosition) => {
+                    console.log("Got position", position.coords);
+                    resolve({
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude,
+                    });
+                },
+                (error: GeolocationPositionError) => {
+                    console.error("Error getting position:", error);
+                    reject(error);
+                }
+            );
+        });
+    }
 
     const handleFindClick: () => Promise<void> = async () => {
         if (!currentLocation) return;
