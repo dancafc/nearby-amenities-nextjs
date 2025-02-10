@@ -3,8 +3,8 @@
 import L from "leaflet";
 import {MapContainer, Marker, Popup, TileLayer, useMap} from "react-leaflet";
 import {useEffect} from "react";
-import {IAmenity} from "@/domain/IAmenity";
-import {Location} from "@/domain/Location";
+import {IAmenity} from "../../backend/domain/IAmenity";
+import {Location} from "../../backend/domain/Location";
 
 const hereIcon = new L.Icon({
     iconUrl: "/here.png", // Uses the image from public/

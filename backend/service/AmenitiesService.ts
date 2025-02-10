@@ -1,10 +1,10 @@
 import * as dotenv from 'dotenv';
-import {AmenityMapper} from "@/amenity-mapping/AmenityMapper";
-import {Toilet} from "@/domain/Toilet";
-import {OsmAmenityType} from "@/osm-domain/OsmAmenityType";
-import {IOsmAmenity} from "@/osm-domain/IOsmAmenity";
-import {OsmAmenitiesReturn} from "@/osm-domain/OsmAmenitiesReturn";
-import {Location} from "@/domain/Location";
+import {AmenityMapper} from "../amenity-mapping/AmenityMapper";
+import {Toilet} from "../domain/Toilet";
+import {OsmAmenityType} from "../osm-domain/OsmAmenityType";
+import {IOsmAmenity} from "../osm-domain/IOsmAmenity";
+import {OsmAmenitiesReturn} from "../osm-domain/OsmAmenitiesReturn";
+import {Location} from "../domain/Location";
 
 dotenv.config();
 

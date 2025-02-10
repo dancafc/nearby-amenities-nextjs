@@ -1,11 +1,11 @@
 "use client";
 
 import React, {useEffect, useState} from "react";
-import {AmenitiesService} from "@/service/AmenitiesService";
-import {OsmAmenityType} from "@/osm-domain/OsmAmenityType";
-import {IAmenity} from "@/domain/IAmenity";
-import {Location} from "@/domain/Location";
-import LocationsMap from "@/app/components/locationsMap";
+import {AmenitiesService} from "../backend/service/AmenitiesService";
+import {OsmAmenityType} from "../backend/osm-domain/OsmAmenityType";
+import {IAmenity} from "../backend/domain/IAmenity";
+import {Location} from "../backend/domain/Location";
+import LocationsMap from "./components/locationsMap";
 import styles from "./page.module.css";
 import "leaflet/dist/leaflet.css";
 import { motion } from "framer-motion";

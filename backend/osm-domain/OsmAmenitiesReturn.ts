@@ -1,4 +1,4 @@
-import {IOsmAmenity} from "@/osm-domain/IOsmAmenity";
+import {IOsmAmenity} from "./IOsmAmenity";
 
 export type OsmAmenitiesReturn = {
     version: string;

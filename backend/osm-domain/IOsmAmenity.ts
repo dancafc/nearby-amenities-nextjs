@@ -1,4 +1,4 @@
-import {OsmAmenityType} from "@/osm-domain/OsmAmenityType";
+import {OsmAmenityType} from "./OsmAmenityType";
 
 export interface IOsmAmenityTags {
     amenity: string;
