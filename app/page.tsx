@@ -40,7 +40,9 @@ const Page = () => {
         // const defaultCentre: Location = { lat: 34.669813, lon: 135.508161 }; // osaka
         // const defaultCentre: Location = { lat: 28.618413, lon: 77.200153 }; // new delhi
         // const defaultCentre: Location = { lat: 35.679160, lon: 139.771879 }; // tokyo
-        const defaultCentre: Location = { lat: 51.520108, lon: -0.110130 }; // london
+        const defaultCentre: Location = { lat: 31.228428, lon: 121.468846 }; // shanghai
+        // 31.228428, 121.468846
+        // const defaultCentre: Location = { lat: 51.520108, lon: -0.110130 }; // london
 
         if (useMockLocation) {
             console.warn("Using mock location.");
